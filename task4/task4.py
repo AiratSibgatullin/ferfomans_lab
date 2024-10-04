@@ -7,8 +7,11 @@ def main():
         print("Please, usage: python task_4.py file_name")
         sys.exit(1)
     file_nums = sys.argv[1]
-    with open(rf"{file_nums}", "r") as file:
-        nums = [int(num) for num in file.read().split()]
+    try:
+        with open(rf"{file_nums}", "r") as file:
+            nums = [int(num) for num in file.read().split()]
+    except FileNotFoundError:
+        print(f"Файл {file_nums} не найден")
     print(get_count_moves(nums))
 
 

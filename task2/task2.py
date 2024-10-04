@@ -10,15 +10,17 @@ def main():
     circle = sys.argv[1]
     points = sys.argv[2]
 
-    with open(rf"{circle}", "r") as file:
-        center_x, center_y = map(int, file.readline().split())
-        radius = int(file.readline())
-
-    with open(rf"{points}", "r") as file:
-        for line in file:
-            point_x, point_y = map(int, line.split())
-            position = get_position(center_x, center_y, radius, point_x, point_y)
-            print(position)
+    try:
+        with open(rf"{circle}", "r") as file:
+            center_x, center_y = map(int, file.readline().split())
+            radius = int(file.readline())
+        with open(rf"{points}", "r") as file:
+            for line in file:
+                point_x, point_y = map(int, line.split())
+                position = get_position(center_x, center_y, radius, point_x, point_y)
+                print(position)
+    except FileNotFoundError:
+        print("Один из файлов не найден")
 
 
 def get_position(center_x, center_y, radius, point_x, point_y):
